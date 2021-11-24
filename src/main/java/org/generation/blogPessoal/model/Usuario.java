@@ -2,7 +2,6 @@ package org.generation.blogPessoal.model;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,17 +14,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import io.swagger.annotations.ApiModelProperty;
-
 @Entity
-@Table(name = "tb_usuario")
-
+@Table(name = "tb_usuarios")
 public class Usuario {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -39,6 +33,7 @@ public class Usuario {
 	@NotNull(message = "O atributo senha é obrigatório")
 	@Size(min = 8, message = "O atributo senha deve ter no mínimo 8 caracteres")
 	private String senha;
+	private String foto;
 	@Column(name = "dt_nascimento")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataNascimento;
@@ -46,7 +41,7 @@ public class Usuario {
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
 
-	// Primeiro método Construtor - Com os atributos
+// Primeiro método Construtor - Com os atributos
 	public Usuario(long id, String nome, String usuario, String senha, LocalDate dataNascimento) {
 		this.id = id;
 		this.nome = nome;
@@ -55,7 +50,7 @@ public class Usuario {
 		this.dataNascimento = dataNascimento;
 	}
 
-	// Segundo método Construtor - Sem os atributos
+// Segundo método Construtor - Sem os atributos
 	public Usuario() {
 	}
 
@@ -108,7 +103,11 @@ public class Usuario {
 	}
 
 	public String getFoto() {
-		// TODO Auto-generated method stub
-		return null;
+		return foto;
 	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	
 }
